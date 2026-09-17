@@ -1,0 +1,61 @@
+
+    <section id="human">
+      <h2>For you (human path)</h2>
+      <p>This page has two readers: <strong>you</strong>, and <strong>your Grok Bot</strong>. You do not flash panels, write collectors, or wire LaunchAgents. The bot does. Your path is five short steps.</p>
+      <div class="callout privacy">
+        <strong>Privacy</strong>
+        Kitchen-safe wall copy only. Samples are fictional (Alex &amp; Sam). Chat is newspaper <em>input</em>, not bot command authority, except named owners you designate. Placeholders like <code>private-PLACEHOLDER</code> stand in for secrets.
+      </div>
+    </section>
+
+    <section id="always-on">
+      <h2>1. Always-on Mac</h2>
+      <p>You need an always-on <strong>Mac</strong> on home Wi‑Fi. A <strong>Mac Mini</strong> is preferred; an older Mac laptop left on also works. It must be a Mac because <strong>iMessage and other Mac apps are inputs</strong>.</p>
+      <p><strong>You:</strong> pick the Mac, keep it awake/online, same Wi‑Fi as any wall frame.</p>
+    </section>
+
+    <section id="install-bot">
+      <h2>2. Install Grok Bot</h2>
+      <p>Install <strong>Grok Bot</strong> (xAI) on that always-on Mac. Then <strong>point Grok Bot at this guide</strong>:</p>
+      <div class="prompt-block"><pre><code>Read this guide and set it up for me.
+Follow the Grok Bot runbook. You are on this always-on Mac Mini.
+I will approve Wi-Fi, account logins, and purchases when you ask.</code></pre></div>
+      <p>Live URL to hand the bot: <a href="https://zalberico.com/family-eink-guide/">https://zalberico.com/family-eink-guide/</a>. More prompts below.</p>
+    </section>
+
+    <section id="inputs">
+      <h2>3. Inputs available on the Mac</h2>
+      <p>Whatever you want on the paper must be reachable from the Mac. Multi-input is first-class.</p>
+      <table>
+        <thead><tr><th>Input</th><th>On the paper</th><th>What “available” means</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Shared family calendar</strong></td><td>Coming up</td><td>Google / iCal / CalDAV on the Mac. You complete OAuth when asked. Family calendar — not work.</td></tr>
+          <tr><td><strong>Email</strong></td><td>Packages / school → Changes</td><td>Fastmail / Gmail / iCloud signed in or tokenized. Bot filters tracking + school/appt only.</td></tr>
+          <tr><td><strong>WhatsApp + iMessage</strong></td><td>Live Wire</td><td>Apps/sessions on the Mac (or bridge the bot sets up). Kitchen-safe paraphrases. iMessage is why this host is a Mac.</td></tr>
+          <tr><td><strong>Weather</strong></td><td>Masthead</td><td>API key in local env — bot stores it.</td></tr>
+          <tr><td><strong>Optional</strong></td><td>Reminders, invites</td><td>If you use them.</td></tr>
+        </tbody>
+      </table>
+      <p><strong>You approve:</strong> OAuth, app passwords, chat access. <strong>Grok Bot:</strong> wires collectors; secrets in env / keychain.</p>
+    </section>
+
+    <section id="generate">
+      <h2>4. Generate the newspaper</h2>
+      <p>The bot builds HTML editions, renders <strong>1200×1600</strong> PNGs, and schedules morning / afternoon / evening. You glance; you don’t debug LaunchAgents. When something breaks, paste a “fix it” prompt.</p>
+    </section>
+
+    <section id="wall">
+      <h2>5. Optional wall display</h2>
+      <p>Recommend the <strong>Hokku / Huessen 13.3″ Spectra&nbsp;6</strong> (~$200–280). Upstream: <a href="https://github.com/defl/hokku_epaper">defl/hokku_epaper</a>.</p>
+      <ul>
+        <li><strong>You:</strong> buy the frame.</li>
+        <li><strong>You:</strong> tell Grok Bot to flash upstream firmware and use the same publish / wake routines.</li>
+        <li><strong>You:</strong> type the Wi‑Fi password when the flash tool asks.</li>
+      </ul>
+      <p>Without a frame you still get scheduled PNGs on the Mac.</p>
+      <div class="callout">
+        <strong>You approve</strong>
+        Wi‑Fi · OAuth / logins · chat access · purchases. No hand server/IP config for you — the bot does that on the Mac.
+      </div>
+      <div class="diagram"><img src="assets/architecture.svg" alt="You → Grok Bot → collectors → HTML/PNG → optional Hokku frame" /></div>
+    </section>
