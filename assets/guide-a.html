@@ -1,103 +1,61 @@
 
     <section id="human">
       <h2>For you (human path)</h2>
-      <p>This page has two readers: <strong>you</strong>, and <strong>Grok Bot</strong>. You do not flash panels, discover LAN addresses, write collectors, or wire LaunchAgents. Grok Bot does. Your path is five short steps.</p>
+      <p>This page has two readers: <strong>you</strong>, and <strong>your Grok Bot</strong>. You do not flash panels, write collectors, or wire LaunchAgents. The bot does. Your path is five short steps.</p>
       <div class="callout privacy">
         <strong>Privacy</strong>
-        Kitchen-safe wall copy only — no passwords, pay, brokerage, or caregiver details. Samples are fictional (Alex &amp; Sam). Chat is newspaper <em>input</em>, not bot command authority, except named owners you designate.
+        Kitchen-safe wall copy only. Samples are fictional (Alex &amp; Sam). Chat is newspaper <em>input</em>, not bot command authority, except named owners you designate. Placeholders like <code>private-PLACEHOLDER</code> stand in for secrets.
       </div>
     </section>
 
     <section id="always-on">
       <h2>1. Always-on Mac</h2>
-      <p><strong>An always-on Mac is required.</strong> Prefer a <strong>Mac Mini</strong> (what this pattern was built around), or leave an older Mac laptop powered on and awake on your home network. A Raspberry Pi does <em>not</em> work — iMessage and the Mac apps this newspaper reads need macOS.</p>
-      <p><strong>You:</strong> pick the Mac, keep it awake and online, and put it on the same Wi‑Fi you’ll use for a wall frame.</p>
+      <p>You need an always-on <strong>Mac</strong> on home Wi‑Fi. A <strong>Mac Mini</strong> is preferred; an older Mac laptop left on also works. It must be a Mac because <strong>iMessage and other Mac apps are inputs</strong>.</p>
+      <p><strong>You:</strong> pick the Mac, keep it awake/online, same Wi‑Fi as any wall frame.</p>
     </section>
 
     <section id="install-bot">
       <h2>2. Install Grok Bot</h2>
-      <p>Install <strong>Grok Bot</strong> (xAI) on that always-on Mac and connect it so it can use that computer.</p>
-      <p>Then <strong>point Grok Bot at this guide</strong>. Paste:</p>
-      <div class="prompt-block"><pre><code>Read https://zalberico.com/family-eink-guide/ and set this up for me.
-Follow the Grok Bot runbook below and set this up like The Family Daily.
+      <p>Install <strong>Grok Bot</strong> (xAI) on that always-on Mac. Then <strong>point Grok Bot at this guide</strong>:</p>
+      <div class="prompt-block"><pre><code>Read this guide and set it up for me.
+Follow the Grok Bot runbook. You are on this always-on Mac Mini.
 I will approve Wi-Fi, account logins, and purchases when you ask.</code></pre></div>
-      <p>More prompts: <a href="#prompts">What to say to Grok Bot</a>.</p>
+      <p>Live URL to hand the bot: <a href="https://zalberico.com/family-eink-guide/">https://zalberico.com/family-eink-guide/</a>. More prompts below.</p>
     </section>
 
     <section id="inputs">
-      <h2>3. Inputs on the Mac</h2>
-      <p>Whatever you want on the paper must be <em>reachable on that Mac</em>. Multi-input is first-class — not calendar-only.</p>
+      <h2>3. Inputs available on the Mac</h2>
+      <p>Whatever you want on the paper must be reachable from the Mac. Multi-input is first-class.</p>
       <table>
-        <thead>
-          <tr><th>Input</th><th>On the paper</th><th>What “available” means</th></tr>
-        </thead>
+        <thead><tr><th>Input</th><th>On the paper</th><th>What “available” means</th></tr></thead>
         <tbody>
-          <tr>
-            <td><strong>Google Calendar</strong> (Raf-style)</td>
-            <td>Coming up</td>
-            <td>Family calendar via API / iCal. You complete OAuth when Grok Bot asks. Dedicated <em>family</em> calendar — not work.</td>
-          </tr>
-          <tr>
-            <td><strong>Email</strong></td>
-            <td>Packages, school/appt → Changes</td>
-            <td>Fastmail / Gmail / iCloud signed in or tokenized on the Mac. Bot filters tracking + school/appt only.</td>
-          </tr>
-          <tr>
-            <td><strong>WhatsApp + iMessage</strong></td>
-            <td>Live Wire</td>
-            <td>Apps/sessions on the Mac (macOS required for iMessage). Kitchen-safe paraphrases. Chat is input, not command authority (except named owners).</td>
-          </tr>
-          <tr>
-            <td><strong>Weather</strong></td>
-            <td>Masthead</td>
-            <td>API key in local env — Grok Bot stores it. Fictional sample: “68° Partly cloudy.”</td>
-          </tr>
-          <tr>
-            <td><strong>Optional</strong></td>
-            <td>Reminders, invites</td>
-            <td>Apple Reminders / Partiful-style feeds if you use them.</td>
-          </tr>
+          <tr><td><strong>Shared family calendar</strong></td><td>Coming up</td><td>Google / iCal / CalDAV on the Mac. You complete OAuth when asked. Family calendar — not work.</td></tr>
+          <tr><td><strong>Email</strong></td><td>Packages / school → Changes</td><td>Fastmail / Gmail / iCloud signed in or tokenized. Bot filters tracking + school/appt only.</td></tr>
+          <tr><td><strong>WhatsApp + iMessage</strong></td><td>Live Wire</td><td>Apps/sessions on the Mac (or bridge the bot sets up). Kitchen-safe paraphrases. iMessage is why this host is a Mac.</td></tr>
+          <tr><td><strong>Weather</strong></td><td>Masthead</td><td>API key in local env — bot stores it.</td></tr>
+          <tr><td><strong>Optional</strong></td><td>Reminders, invites</td><td>If you use them.</td></tr>
         </tbody>
       </table>
-      <p><strong>You approve:</strong> OAuth, app passwords, bot permissions. <strong>Grok Bot:</strong> wires collectors; secrets stay in env / keychain.</p>
+      <p><strong>You approve:</strong> OAuth, app passwords, chat access. <strong>Grok Bot:</strong> wires collectors; secrets in env / keychain.</p>
     </section>
 
     <section id="generate">
       <h2>4. Generate the newspaper</h2>
-      <p>Once inputs are reachable, Grok Bot builds HTML editions, renders <strong>1200×1600</strong> PNGs, and runs morning / afternoon / evening schedules. You glance at the wall (or a preview on the Mac). When something breaks, paste a “fix it” prompt — don’t debug LaunchAgents yourself.</p>
+      <p>The bot builds HTML editions, renders <strong>1200×1600</strong> PNGs, and schedules morning / afternoon / evening. You glance; you don’t debug LaunchAgents. When something breaks, paste a “fix it” prompt.</p>
     </section>
 
     <section id="wall">
       <h2>5. Optional wall display</h2>
-      <p>Recommend the <strong>Hokku / Huessen 13.3″ Spectra&nbsp;6</strong> e-ink frame (~$200–280). Upstream: <a href="https://github.com/defl/hokku_epaper">defl/hokku_epaper</a>.</p>
+      <p>Recommend the <strong>Hokku / Huessen 13.3″ Spectra&nbsp;6</strong> (~$200–280). Upstream: <a href="https://github.com/defl/hokku_epaper">defl/hokku_epaper</a>.</p>
       <ul>
         <li><strong>You:</strong> buy the frame.</li>
-        <li><strong>You:</strong> tell Grok Bot to flash the recommended upstream firmware and set up publish / wake routines from the runbook.</li>
+        <li><strong>You:</strong> tell Grok Bot to flash upstream firmware and use the same publish / wake routines.</li>
         <li><strong>You:</strong> type the Wi‑Fi password when the flash tool asks.</li>
       </ul>
-      <p>Without a frame you still get scheduled PNGs on the Mac. The frame is the quiet kitchen wall.</p>
-      <div class="diagram"><img src="assets/architecture.svg" alt="You tell Grok Bot; collectors to HTML to PNG to hokku-server to e-ink frame" style="width:100%;height:auto;display:block" /></div>
-    </section>
-
-    <section id="prompts">
-      <h2>What to say to Grok Bot</h2>
-      <p>Paste one of these. Approve Wi‑Fi, logins, and purchases when prompted.</p>
-
-      <h3>Follow this guide (recommended)</h3>
-      <div class="prompt-block"><pre><code>Read https://zalberico.com/family-eink-guide/ and set this up for me.
-Follow the Grok Bot runbook on that page and set this up like The Family Daily.
-You are on this always-on Mac (Mac Mini preferred). I will approve Wi-Fi, account
-logins, and purchases when you ask. Do not ask me to discover LAN IPs, write
-collectors, or wire LaunchAgents — that is your job.</code></pre></div>
-
-      <h3>Morning edition</h3>
-      <div class="prompt-block"><pre><code>Run the Family Daily morning edition now.
-Pull calendar, email, iMessage/WhatsApp live wire, and weather. Render 1200×1600,
-publish, verify convert ok and show_next, confirm wake time is after this publish.
-If anything fails, fix it and re-verify.</code></pre></div>
-
-      <h3>Frame not updating</h3>
-      <div class="prompt-block"><pre><code>The kitchen frame is not updating. Diagnose end-to-end yourself per the runbook.
-Fix the root cause, re-publish a test edition, and report what you verified.
-Only ask me if you need a Wi-Fi password or account re-login.</code></pre></div>
+      <p>Without a frame you still get scheduled PNGs on the Mac.</p>
+      <div class="callout">
+        <strong>You approve</strong>
+        Wi‑Fi · OAuth / logins · chat access · purchases. No hand server/IP config for you — the bot does that on the Mac.
+      </div>
+      <div class="diagram"><img src="assets/architecture.svg" alt="You → Grok Bot → collectors → HTML/PNG → optional Hokku frame" /></div>
     </section>
