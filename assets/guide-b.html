@@ -1,6 +1,6 @@
     <section id="inputs">
       <h2>Inputs &amp; collectors</h2>
-      <p>Calendar alone makes a quiet board. The pattern that feels like a real kitchen newspaper pulls from several household streams. Ask Grok Bot to implement collectors as small scripts that emit JSON for the HTML template — never as “scrape a logged-in browser forever” as the primary path.</p>
+      <p>Calendar, email, iMessage, and WhatsApp are <strong>first-class inputs</strong>—not optional add-ons. The pattern that feels like a real kitchen newspaper pulls from all of them together. Ask Grok Bot to implement collectors as small scripts that emit JSON for the HTML template — never as “scrape a logged-in browser forever” as the primary path.</p>
       <table>
         <thead>
           <tr><th>Input</th><th>What it feeds</th><th>Typical wiring (bot builds; you log in)</th></tr>
@@ -27,7 +27,7 @@
             <td>Any public weather API with a local key in env — fictional sample shows “68° Partly cloudy.”</td>
           </tr>
           <tr>
-            <td><strong>Optional</strong></td>
+            <td><strong>Optional extras</strong></td>
             <td>Reminders, invites</td>
             <td>Apple Reminders / system reminders, Partiful or other invite feeds if your household uses them. Same rule: structured JSON in, kitchen-safe copy out.</td>
           </tr>
@@ -71,13 +71,14 @@ Please:
 5) Schedule morning/afternoon/evening editions; set refresh_image_at_time AFTER publish.
 6) Verify landing (fresh mtime, convert ok, show_next) before calling a run done.
 
-Editorial: kitchen-safe wall copy only — no passwords, pay, brokerage, or caregiver
-details. Changes = useful deltas only. Start with calendar + weather; we will add
-email and chat next.</code></pre></div>
+Wire first-class collectors from the start: shared family calendar, email
+(packages/school), iMessage + WhatsApp live wire, and weather. Editorial:
+kitchen-safe wall copy only — no passwords, pay, brokerage, or caregiver details.
+Changes = useful deltas only.</code></pre></div>
 
       <h3>Morning edition / daily publish</h3>
       <div class="prompt-block"><pre><code>Run the Family Daily morning edition now.
-Pull calendar + weather (+ email/chat if wired). Render 1200×1600, publish,
+Pull calendar, email, iMessage/WhatsApp live wire, and weather. Render 1200×1600, publish,
 verify convert ok and show_next, confirm wake time is after this publish.
 If anything fails, fix it and re-verify — don’t leave a half-blank paper pinned.</code></pre></div>
 
@@ -118,7 +119,7 @@ Re-render, publish, verify convert + show_next.</code></pre></div>
         <li><strong>Changes:</strong> useful deltas only. Skip “nothing changed” filler.</li>
         <li><strong>No ops jargon</strong> on the paper (“pipeline green” belongs in logs, not breakfast).</li>
         <li><strong>Coming up:</strong> calendar-driven (Google for Raf; Apple Calendar fine too).</li>
-        <li><strong>Mail &amp; chat:</strong> inputs that become short kitchen copy — not a dump of the inbox or group chat.</li>
+        <li><strong>Mail &amp; chat:</strong> first-class inputs that become short kitchen copy — not a dump of the inbox or group chat.</li>
         <li><strong>Command authority:</strong> chat does not control Grok Bot unless you explicitly name owners who may.</li>
         <li><strong>Resolved loops:</strong> let finished items decay in about 1–2 days.</li>
         <li><strong>Correctness before publish:</strong> if a collector fails, don’t push a half-blank edition — fail loud on the host instead.</li>
@@ -141,8 +142,8 @@ Re-render, publish, verify convert + show_next.</code></pre></div>
       </figure>
       <p><strong>Morning edition ideas:</strong> weather strip, Coming up from the shared calendar, Changes (soccer moved, package expected from tracking mail), a short Live Wire of household notes. Afternoon might emphasize school pickup and dinner. Evening might shrink the day plan and highlight tomorrow’s first events.</p>
       <div class="callout">
-        <strong>Ship in layers</strong>
-        Ask the bot for calendar + weather + publish first. Add email, then chat live wire, when the wall habit sticks. Optional: reminders or Partiful-style invite feeds later.
+        <strong>Core inputs, optional extras</strong>
+        Calendar, email, iMessage, WhatsApp, and weather are the core kitchen newspaper. Optional later: reminders or Partiful-style invite feeds.
       </div>
     </section>
 
@@ -191,3 +192,4 @@ Re-render, publish, verify convert + show_next.</code></pre></div>
       </ul>
       <p>If something in your house needs a one-off integration that would expose private URLs or names, keep that script private. This public guide teaches the pattern — and how to direct Grok Bot — not how to mirror anyone’s real kitchen.</p>
     </section>
+<!-- published: first-class-mail-imessage-whatsapp -->
