@@ -1,8 +1,16 @@
 
     <section id="what">
       <h2>What you’ll build</h2>
-      <p>Imagine a quiet newspaper on the kitchen wall: today’s weather, what’s coming up, packages and school notes from email, a short live wire from household chat, and only the changes that matter. No glowing tablet. No password prompts on the wall. Just a portrait e-ink panel that wakes a few times a day, pulls a fresh PNG from a home server, and goes back to sleep.</p>
-      <p><strong>You are the publisher. Grok Bot is the newsroom.</strong> This page has two readers: <em>you</em> (to understand the product), and <em>your Grok Bot</em> (to execute the setup when you point it here). You do not flash panels, discover LAN addresses, write collectors, or wire LaunchAgents yourself — the bot does. Your jobs are short: buy the frame, keep a small always-on Mac or Pi online, install and connect Grok Bot to that machine, approve Wi‑Fi / account logins / purchases when asked, and paste a high-level goal (or “follow this guide”).</p>
+      <p>A quiet newspaper on the kitchen wall: weather, what’s coming up, packages and school notes from email, a short live wire from household chat, and only the changes that matter. Portrait e-ink, a few wakes a day, fresh PNG from a home server—no glowing tablet.</p>
+      <p><strong>This guide is for you <em>and</em> for Grok Bot.</strong> You read it to understand the system. Then you paste a prompt so <em>your</em> Grok Bot (Cursor / Grok Bot desktop agent with a computer) executes the setup on an always-on Mac or Pi. You do not configure servers, IPs, collectors, or cron by hand—the bot does. You buy hardware, keep the host online, connect the bot, and approve Wi‑Fi, logins, and purchases.</p>
+      <div class="callout">
+        <strong>Your jobs (human)</strong>
+        Buy the Hokku / Huessen frame · keep a small always-on Mac or Pi online · install Grok Bot and connect it to that machine · approve Wi‑Fi, OAuth/logins, and purchases when the bot asks.
+      </div>
+      <div class="callout">
+        <strong>Bot jobs</strong>
+        Flash/firmware help with you present for Wi‑Fi · install and keep alive hokku-server · write collectors, HTML newspaper, publish pipeline · schedule editions · verify convert + <code>show_next</code> · fix breaks when you paste a diagnose prompt.
+      </div>
       <div class="callout privacy">
         <strong>Privacy</strong>
         Kitchen-safe wall copy only (no passwords, pay, brokerage, caregiver details). Samples are fictional (Alex &amp; Sam). Chat is newspaper <em>input</em>, not bot command authority, except named owners you designate.
@@ -18,81 +26,77 @@
         <tbody>
           <tr>
             <td>Hokku / Huessen 13.3″ Spectra&nbsp;6</td>
-            <td>ESP32-S3 e-ink frame (sold under both names). Open-source firmware + server.</td>
+            <td>ESP32-S3 e-ink frame. Same hardware family; sold under both names. Open-source firmware + server: <a href="https://github.com/defl/hokku_epaper">defl/hokku_epaper</a>.</td>
             <td>~$200–280</td>
           </tr>
           <tr>
             <td>Always-on host</td>
-            <td>Mac mini, Raspberry Pi, or similar. Grok Bot drives this machine: <code>hokku-server</code>, collectors, publish jobs.</td>
-            <td>Whatever you already have</td>
+            <td>Mac mini, Raspberry Pi, or similar. Runs hokku-server, collectors, publish. This is the machine Grok Bot drives.</td>
+            <td>Whatever you have</td>
           </tr>
           <tr>
-            <td>Grok Bot / Cursor agent</td>
-            <td>Desktop agent with a computer connected to that host. You talk; it installs, codes, schedules, and verifies.</td>
-            <td>Per your Cursor / Grok Bot plan</td>
+            <td>Grok Bot / Cursor</td>
+            <td>Desktop agent with a computer connected to that host.</td>
+            <td>Per your plan</td>
           </tr>
           <tr>
-            <td>Same-LAN Wi‑Fi</td>
-            <td>Frame and host on one network. When the bot flashes, <strong>you</strong> type the Wi‑Fi password if asked.</td>
+            <td>Same Wi‑Fi LAN</td>
+            <td>Frame ↔ host. You type Wi‑Fi when the bot/flasher asks.</td>
             <td>—</td>
           </tr>
           <tr>
             <td>Family inputs</td>
-            <td>Shared calendar, email (packages/school), iMessage + WhatsApp live wire, weather. See <a href="#inputs">Inputs</a>.</td>
+            <td>Calendar, email, iMessage, WhatsApp, weather (first-class). See <a href="#inputs">Inputs</a>.</td>
             <td>Free (existing accounts)</td>
           </tr>
         </tbody>
       </table>
-      <p>Upstream hardware/firmware: <a href="https://github.com/defl/hokku_epaper">github.com/defl/hokku_epaper</a>. <strong>Grok Bot:</strong> open those docs and follow flash + server install with the human present for Wi‑Fi entry.</p>
     </section>
 
     <section id="architecture">
       <h2>Architecture</h2>
-      <p>A tiny newsroom that Grok Bot staffs:</p>
+      <p>Tiny newsroom Grok Bot staffs:</p>
       <ol>
-        <li><strong>You</strong> — buy hardware, keep the host online, connect Grok Bot, approve logins / Wi‑Fi / purchases, paste goals.</li>
-        <li><strong>Grok Bot</strong> — installs and maintains the whole pipeline on the always-on host.</li>
-        <li><strong>Collectors</strong> — calendar, email, iMessage/WhatsApp, weather (+ optional extras) → structured JSON.</li>
-        <li><strong>HTML newspaper</strong> — portrait “edition.”</li>
-        <li><strong>Headless Chrome</strong> — renders to a <strong>1200×1600</strong> PNG (~40px safe margins; scale to fill without side crop).</li>
-        <li><strong>Publish</strong> — copies PNG into Hokku images, pins <code>show_next</code>, hard-fails unless convert status is ok.</li>
-        <li><strong>hokku-server</strong> — serves the image; frame wakes <em>after</em> editions publish (<code>refresh_image_at_time</code>).</li>
+        <li><strong>You</strong> — buy/approve; paste prompts.</li>
+        <li><strong>Grok Bot</strong> — installs and maintains the pipeline on the always-on host.</li>
+        <li><strong>Collectors</strong> — calendar, email, iMessage/WhatsApp, weather → JSON.</li>
+        <li><strong>HTML newspaper</strong> — portrait edition.</li>
+        <li><strong>Headless Chrome</strong> — <strong>1200×1600</strong> PNG (~40px safe margins; scale to fill, no side crop).</li>
+        <li><strong>Publish</strong> — copy into Hokku images, pin <code>show_next</code>, hard-fail unless convert is ok.</li>
+        <li><strong>hokku-server</strong> — serves image; frame wakes <em>after</em> publish (<code>refresh_image_at_time</code>).</li>
       </ol>
-      <div class="diagram"><img src="assets/architecture.svg" alt="Architecture: you tell Grok Bot; collectors to HTML to PNG to hokku-server to e-ink frame to kitchen wall" style="width:100%;height:auto;display:block" /></div>
-      <p><strong>Grok Bot:</strong> discover the host’s LAN address, keep <code>hokku-server</code> healthy (local UI is often <code>http://localhost:8080/hokku/ui</code> — confirm against current Hokku docs), and point the frame at that host. Do not ask the human to look up or type IPs unless a login UI truly requires it.</p>
+      <div class="diagram"><img src="assets/architecture.svg" alt="You tell Grok Bot; collectors to HTML to PNG to hokku-server to e-ink frame" style="width:100%;height:auto;display:block" /></div>
+      <p>Runtime data often lives under an application-support style folder for Hokku. Local UI is typically something like <code>http://localhost:8080/hokku/ui</code>—confirm against current Hokku docs. The bot points the frame at your host on the LAN.</p>
     </section>
 
     <section id="with-bot">
       <h2>Working with Grok Bot</h2>
-      <h3>Your checklist (human)</h3>
+      <h3>Human checklist</h3>
       <ol>
-        <li>Buy the Hokku / Huessen 13.3″ Spectra&nbsp;6 frame.</li>
-        <li>Keep a small always-on Mac or Pi on the kitchen Wi‑Fi.</li>
-        <li>Install Grok Bot / Cursor and connect the agent to that machine.</li>
-        <li>Paste a setup prompt (see <a href="#prompts">What to say</a>) — or: <em>Read https://zalberico.com/family-eink-guide/ and set this up for me.</em></li>
-        <li>When the bot asks: approve purchases, enter Wi‑Fi, complete OAuth / account logins.</li>
+        <li>Buy the frame; plug in / power the always-on Mac or Pi on kitchen Wi‑Fi.</li>
+        <li>Install Grok Bot / Cursor; connect the agent to that machine.</li>
+        <li>Paste the <a href="#prompts">setup prompt</a> (start with “Read this guide and set it up for me”).</li>
+        <li>When asked: enter Wi‑Fi, complete OAuth/logins, approve any purchase.</li>
+        <li>If the frame stalls, paste the “Frame not updating” prompt.</li>
       </ol>
-      <h3>Bot playbook (Grok Bot executes)</h3>
+      <h3>What the bot should do (executable)</h3>
       <ol>
-        <li><strong>Grok Bot:</strong> flash firmware per upstream Hokku docs; pause for the human to enter Wi‑Fi when the tool requires it.</li>
-        <li><strong>Grok Bot:</strong> install and keep alive <code>hokku-server</code> (micromamba/conda + LaunchAgent or systemd).</li>
-        <li><strong>Grok Bot:</strong> discover LAN addressing; configure the frame to reach this host; verify local UI.</li>
-        <li><strong>Grok Bot:</strong> build collectors → HTML newspaper → 1200×1600 PNG via headless Chrome.</li>
-        <li><strong>Grok Bot:</strong> publish into Hokku images, pin <code>show_next</code>, hard-fail unless convert is ok.</li>
-        <li><strong>Grok Bot:</strong> schedule morning/afternoon/evening editions; set <code>refresh_image_at_time</code> <em>after</em> publish.</li>
-        <li><strong>Grok Bot:</strong> verify landing (fresh mtime, convert ok, show_next; optionally <code>last_seen</code>) before calling a run done.</li>
-        <li><strong>Human callout:</strong> complete calendar / email / chat logins when the bot surfaces an OAuth or password prompt.</li>
+        <li>Open upstream <a href="https://github.com/defl/hokku_epaper">defl/hokku_epaper</a> docs; help flash firmware (human types Wi‑Fi).</li>
+        <li>Install and keep alive hokku-server (micromamba/conda + LaunchAgent or systemd).</li>
+        <li>Build collectors (calendar, email, iMessage/WhatsApp, weather) → HTML → 1200×1600 PNG.</li>
+        <li>Publish: pin <code>show_next</code>; hard-fail unless convert status is ok.</li>
+        <li>Schedule morning/afternoon/evening; set wake times <em>after</em> publish.</li>
+        <li>Verify landing (fresh mtime, convert ok, <code>show_next</code>) before calling a run done.</li>
       </ol>
       <div class="callout">
-        <strong>Division of labor</strong>
-        Bot: installs, discovers network, codes, schedules, verifies, debugs, rewrites the paper. Human: buy hardware, keep host online, connect the bot, enter Wi‑Fi / approve logins / purchases, decide kitchen-safe editorial and who (if anyone) may command the bot from chat.
+        <strong>You approve</strong>
+        Wi‑Fi credentials · calendar/email OAuth · chat-bridge access · any paid hardware or API keys. Everything else is bot grunt work.
       </div>
-      <h3>What “done” looks like for an edition</h3>
+      <h3>Done looks like</h3>
       <ul>
-        <li>PNG is <strong>1200×1600</strong> portrait with ~40px safe margins.</li>
-        <li>Publish copied the file into Hokku’s images folder and pinned <code>show_next</code>.</li>
-        <li>Convert / processing status is <code>ok</code> — otherwise publish hard-fails.</li>
-        <li>Frame wake times are scheduled <em>after</em> each publish window.</li>
-        <li>Optional after wake: <code>last_seen</code> updated.</li>
+        <li>1200×1600 PNG, ~40px margins</li>
+        <li><code>show_next</code> pinned; convert ok</li>
+        <li>Wake times after each publish window</li>
+        <li>Optional: <code>last_seen</code> after a wake</li>
       </ul>
     </section>
