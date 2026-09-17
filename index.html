@@ -4,38 +4,38 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>The Family Daily — Kitchen E-ink Board with Grok Bot</title>
-  <meta name="description" content="Point Grok Bot at this guide: kitchen e-ink newspaper on a Hokku / Huessen Spectra 6 — you buy the frame and approve logins; the bot does the rest." />
+  <meta name="description" content="Point Grok Bot at this guide. You keep a Mac Mini online and approve logins; the bot builds The Family Daily newspaper and optionally drives a Hokku e-ink frame." />
   <link rel="stylesheet" href="assets/site.css" />
 </head>
 <body>
   <header class="masthead">
-    <p class="eyebrow">Kitchen wall · Newspaper pattern · Grok Bot does the grunt work</p>
+    <p class="eyebrow">Human path · Grok Bot runbook · Kitchen newspaper</p>
     <h1>The Family Daily</h1>
-    <p class="deck">A newspaper-style kitchen e-ink board on a Hokku / Huessen 13.3″ Spectra&nbsp;6 — for <strong>you</strong> to understand, and for <strong>Grok Bot</strong> to execute. You buy the frame, keep a small Mac or Pi online, connect the bot, and approve Wi‑Fi / logins / purchases. The bot installs, wires collectors, publishes, and verifies.</p>
+    <p class="deck">A newspaper-style kitchen board. <strong>You</strong> read the short path below. <strong>Your Grok Bot</strong> executes the runbook when you point it at this page.</p>
     <div class="meta-bar">
-      <span>Human reads · Bot executes</span>
-      <span>Public tutorial · fictional samples</span>
-      <span>Hardware ~$200–280</span>
+      <span>Mac Mini (or similar) always on</span>
+      <span>Calendar · Mail · WhatsApp · iMessage · Weather</span>
+      <span>Optional: Hokku 13.3″ Spectra&nbsp;6</span>
     </div>
   </header>
   <nav class="toc" aria-label="Table of contents">
     <h2>On this page</h2>
     <ol>
-      <li><a href="#what">What you’ll build</a></li>
-      <li><a href="#parts">Parts &amp; cost</a></li>
-      <li><a href="#architecture">Architecture</a></li>
-      <li><a href="#with-bot">Working with Grok Bot</a></li>
-      <li><a href="#inputs">Inputs &amp; collectors</a></li>
+      <li><a href="#human">For you (human path)</a></li>
+      <li><a href="#always-on">1. Always-on computer</a></li>
+      <li><a href="#install-bot">2. Install Grok Bot</a></li>
+      <li><a href="#inputs">3. Inputs on the Mini</a></li>
+      <li><a href="#generate">4. Generate the newspaper</a></li>
+      <li><a href="#wall">5. Optional wall display</a></li>
       <li><a href="#prompts">What to say to Grok Bot</a></li>
-      <li><a href="#editorial">Editorial &amp; privacy</a></li>
+      <li><a href="#bot-runbook">Grok Bot runbook</a></li>
       <li><a href="#sample">Sample day</a></li>
-      <li><a href="#troubleshoot">Troubleshooting</a></li>
       <li><a href="#links">Links</a></li>
     </ol>
   </nav>
   <main id="guide"><p class="loading" style="text-align:center;color:#5a554c">Loading the guide…</p></main>
   <footer class="footer">
-    <p>The Family Daily · public tutorial · fictional samples · Grok Bot executes · you approve</p>
+    <p>The Family Daily · fictional samples (Alex &amp; Sam) · Grok Bot executes · you approve</p>
     <p><a href="https://github.com/zalberico/family-eink-guide">Source on GitHub</a></p>
   </footer>
   <script>
@@ -45,12 +45,12 @@
     ]).then(function(parts){
       document.getElementById("guide").innerHTML = parts[0] + parts[1];
     }).catch(function(){
-      document.getElementById("guide").innerHTML = "<p>Could not load guide sections. Open the files under <code>assets/</code> in the <a href=\"https://github.com/zalberico/family-eink-guide\">GitHub repo</a>.</p>";
+      document.getElementById("guide").innerHTML = "<p>Could not load guide sections. See <a href=\"https://github.com/zalberico/family-eink-guide\">GitHub</a>.</p>";
     });
   </script>
   <noscript>
     <main style="max-width:42rem;margin:2rem auto;padding:0 1.25rem">
-      <p>This page needs JavaScript to assemble the guide. You can also read <a href="assets/guide-a.html">part A</a> and <a href="assets/guide-b.html">part B</a> directly.</p>
+      <p>JavaScript assembles this page. Read <a href="assets/guide-a.html">part A</a> and <a href="assets/guide-b.html">part B</a> directly.</p>
     </main>
   </noscript>
 </body>
