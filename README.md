@@ -1,25 +1,26 @@
 # The Family Daily — Kitchen E-ink Board Guide
 
-A public tutorial for setting up a newspaper-style family kitchen board on a **Hokku / Huessen 13.3″ Spectra 6** e-ink frame — by directing **Grok Bot** (Cursor / Grok Bot desktop agent with a computer) on a small always-on Mac or Pi, not by hand-building every script yourself.
+Point **Grok Bot** at this guide to set up a newspaper-style kitchen board on a **Hokku / Huessen 13.3″ Spectra 6** e-ink frame. You (the human) buy the frame, keep a small always-on Mac or Pi online, connect the bot, and approve Wi‑Fi / logins / purchases. The bot installs, discovers the LAN, wires collectors, publishes, and verifies.
 
 **Live guide:** [https://zalberico.com/family-eink-guide/](https://zalberico.com/family-eink-guide/)
 
 Also: [https://zalberico.github.io/family-eink-guide/](https://zalberico.github.io/family-eink-guide/)
 
+## Two readers
+
+1. **You** — understand the product and your short checklist.
+2. **Your Grok Bot** — execute the bot playbook when you say *Read https://zalberico.com/family-eink-guide/ and set this up for me.*
+
 ## What’s in here
 
-- `index.html` — long-form tutorial (GitHub Pages site root)
-- `assets/guide-a.html` / `guide-b.html` — loaded sections (Grok Bot framing, collectors, copy-paste prompts)
-- `assets/sample-board.svg` — fictional sample board mock (Alex & Sam; calendar + mail + chat cues)
-- `assets/architecture.svg` — you → Grok Bot → pipeline diagram
-
-## Framing
-
-You buy the frame and keep a host online. You install Grok Bot, connect it to that machine, and tell the bot what you want. The bot installs Hokku help, writes the HTML newspaper, wires collectors (calendar, email, iMessage/WhatsApp, weather, optional reminders/invites), schedules editions, verifies convert + `show_next`, and iterates when something breaks. You approve purchases, logins, Wi‑Fi, and anything security-sensitive.
+- `index.html` — long-form tutorial (GitHub Pages)
+- `assets/guide-a.html` / `guide-b.html` — sections (framing, collectors, copy-paste prompts)
+- `assets/sample-board.svg` — fictional sample (Alex & Sam)
+- `assets/architecture.svg` — you → Grok Bot → pipeline
 
 ## Privacy
 
-This repo teaches a **pattern**. It does **not** include real household schedules, Wi‑Fi secrets, LAN IPs, tokens, chat logs, or screenshots of a live board. Samples use Alex & Sam and placeholders (`YOUR_WIFI`, `192.0.2.x`, `private-PLACEHOLDER`).
+Fictional samples (Alex & Sam). Kitchen-safe wall copy only.
 
 ## Upstream hardware / firmware
 
@@ -27,4 +28,4 @@ This repo teaches a **pattern**. It does **not** include real household schedule
 
 ## License
 
-Tutorial text and fictional sample art in this repo: use freely for your own household setup. Hokku/Huessen firmware and server remain under their upstream licenses.
+Tutorial text and fictional sample art: use freely for your own household setup. Hokku/Huessen firmware and server remain under their upstream licenses.
