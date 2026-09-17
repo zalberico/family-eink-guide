@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 280" role="img" aria-label="Architecture diagram">
+  <rect width="720" height="280" fill="#f4f1ea"/>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 Z" fill="#333"/>
+    </marker>
+  </defs>
+  <rect x="20" y="90" width="120" height="70" rx="8" fill="#fff" stroke="#1a1a1a" stroke-width="2"/>
+  <text x="80" y="120" text-anchor="middle" font-family="Georgia, serif" font-size="13" fill="#111">Collectors</text>
+  <text x="80" y="140" text-anchor="middle" font-family="Georgia, serif" font-size="11" fill="#555">cal · weather</text>
+  <rect x="180" y="90" width="120" height="70" rx="8" fill="#fff" stroke="#1a1a1a" stroke-width="2"/>
+  <text x="240" y="120" text-anchor="middle" font-family="Georgia, serif" font-size="13" fill="#111">HTML paper</text>
+  <text x="240" y="140" text-anchor="middle" font-family="Georgia, serif" font-size="11" fill="#555">newspaper layout</text>
+  <rect x="340" y="90" width="120" height="70" rx="8" fill="#fff" stroke="#1a1a1a" stroke-width="2"/>
+  <text x="400" y="120" text-anchor="middle" font-family="Georgia, serif" font-size="13" fill="#111">PNG 1200×1600</text>
+  <text x="400" y="140" text-anchor="middle" font-family="Georgia, serif" font-size="11" fill="#555">headless Chrome</text>
+  <rect x="500" y="40" width="100" height="60" rx="8" fill="#fff" stroke="#1a1a1a" stroke-width="2"/>
+  <text x="550" y="65" text-anchor="middle" font-family="Georgia, serif" font-size="12" fill="#111">hokku-server</text>
+  <text x="550" y="82" text-anchor="middle" font-family="Georgia, serif" font-size="10" fill="#555">always-on host</text>
+  <rect x="500" y="150" width="100" height="60" rx="8" fill="#e8e4dc" stroke="#1a1a1a" stroke-width="2"/>
+  <text x="550" y="175" text-anchor="middle" font-family="Georgia, serif" font-size="12" fill="#111">E-ink frame</text>
+  <text x="550" y="192" text-anchor="middle" font-family="Georgia, serif" font-size="10" fill="#555">Spectra 6 13.3"</text>
+  <rect x="620" y="90" width="80" height="70" rx="8" fill="#fff" stroke="#1a1a1a" stroke-width="2"/>
+  <text x="660" y="120" text-anchor="middle" font-family="Georgia, serif" font-size="12" fill="#111">Kitchen</text>
+  <text x="660" y="140" text-anchor="middle" font-family="Georgia, serif" font-size="11" fill="#555">wall</text>
+  <line x1="140" y1="125" x2="175" y2="125" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="300" y1="125" x2="335" y2="125" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="460" y1="110" x2="495" y2="80" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="550" y1="100" x2="550" y2="145" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="600" y1="180" x2="615" y2="140" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="360" y="250" text-anchor="middle" font-family="Georgia, serif" font-size="12" fill="#666">Collectors → HTML → PNG → Hokku server → frame wake → kitchen wall</text>
+</svg>
