@@ -1,19 +1,15 @@
-# The Family Daily — Kitchen E-ink Board Guide
+# The Family Daily — Kitchen E-ink with Grok Bot
 
-**Live:** [https://zalberico.com/family-eink-guide/](https://zalberico.com/family-eink-guide/)
+**Human path**
 
-Two readers: **you** (short human path) and **Grok Bot** (executable runbook).
+1. Always-on **Mac** (Mac Mini preferred, or an old Mac laptop left on — required for iMessage / Mac apps)  
+2. Install **Grok Bot** (xAI); point it at this guide (“Read this guide and set it up for me.”)  
+3. Calendar, mail, WhatsApp, iMessage signed-in/available on that Mac  
+4. Bot generates the newspaper  
+5. Optional: buy Hokku/Huessen 13.3″ Spectra 6; tell Grok Bot to flash [defl/hokku_epaper](https://github.com/defl/hokku_epaper)  
 
-**Always-on Mac required** (Mac Mini preferred, or an old Mac laptop left on). Raspberry Pi / Linux will not work — iMessage and Mac apps are required inputs.
+Mac only. Grok Bot only. Human approves Wi‑Fi / OAuth / purchases.
 
-You keep the Mac online, install/connect Grok Bot, approve Wi‑Fi / logins / purchases, and point Grok Bot at this guide. Grok Bot builds collectors (calendar, email, iMessage, WhatsApp, weather), newspapers, and optionally drives a Hokku / Huessen 13.3″ Spectra 6 frame.
+**Live:** https://zalberico.com/family-eink-guide/
 
-Point Grok Bot at: *Read https://zalberico.com/family-eink-guide/ and set this up for me. Follow the Grok Bot runbook and set this up like The Family Daily.*
-
-## Privacy
-
-Fictional samples (Alex & Sam). Kitchen-safe wall copy only.
-
-## Upstream
-
-- [defl/hokku_epaper](https://github.com/defl/hokku_epaper)
+Privacy: fictional Alex & Sam; placeholders like `private-PLACEHOLDER`.
