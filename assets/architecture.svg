@@ -1,39 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 300" role="img" aria-label="Architecture diagram with Grok Bot">
-  <rect width="760" height="300" fill="#f4f1ea"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 326" role="img" aria-labelledby="diagram-title diagram-desc">
+  <title id="diagram-title">How the Family Daily works</title>
+  <desc id="diagram-desc">Selected calendar, email, chat, and weather information goes to your Mac. The Mac prepares a newspaper image for a PNG preview and, optionally, an e-ink frame.</desc>
+  <rect width="760" height="326" rx="10" fill="#f7f3eb"/>
   <defs>
-    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-      <path d="M0,0 L6,3 L0,6 Z" fill="#333"/>
+    <marker id="arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#3d4a3a"/>
     </marker>
   </defs>
-  <rect x="16" y="100" width="88" height="70" rx="8" fill="#efe9de" stroke="#1a1a1a" stroke-width="2"/>
-  <text x="60" y="128" text-anchor="middle" font-family="Georgia, serif" font-size="13" fill="#111">You</text>
-  <text x="60" y="146" text-anchor="middle" font-family="Georgia, serif" font-size="10" fill="#555">prompts · OK</text>
-  <rect x="128" y="100" width="100" height="70" rx="8" fill="#fff" stroke="#1a1a1a" stroke-width="2"/>
-  <text x="178" y="128" text-anchor="middle" font-family="Georgia, serif" font-size="13" fill="#111">Grok Bot</text>
-  <text x="178" y="146" text-anchor="middle" font-family="Georgia, serif" font-size="10" fill="#555">on Mac / Pi</text>
-  <rect x="252" y="88" width="118" height="94" rx="8" fill="#fff" stroke="#1a1a1a" stroke-width="2"/>
-  <text x="311" y="118" text-anchor="middle" font-family="Georgia, serif" font-size="13" fill="#111">Collectors</text>
-  <text x="311" y="138" text-anchor="middle" font-family="Georgia, serif" font-size="10" fill="#555">cal · mail</text>
-  <text x="311" y="154" text-anchor="middle" font-family="Georgia, serif" font-size="10" fill="#555">chat · weather</text>
-  <rect x="394" y="100" width="100" height="70" rx="8" fill="#fff" stroke="#1a1a1a" stroke-width="2"/>
-  <text x="444" y="128" text-anchor="middle" font-family="Georgia, serif" font-size="12" fill="#111">HTML paper</text>
-  <text x="444" y="146" text-anchor="middle" font-family="Georgia, serif" font-size="10" fill="#555">→ PNG 1200×1600</text>
-  <rect x="518" y="40" width="100" height="60" rx="8" fill="#fff" stroke="#1a1a1a" stroke-width="2"/>
-  <text x="568" y="65" text-anchor="middle" font-family="Georgia, serif" font-size="12" fill="#111">hokku-server</text>
-  <text x="568" y="82" text-anchor="middle" font-family="Georgia, serif" font-size="10" fill="#555">always-on host</text>
-  <rect x="518" y="150" width="100" height="60" rx="8" fill="#e8e4dc" stroke="#1a1a1a" stroke-width="2"/>
-  <text x="568" y="175" text-anchor="middle" font-family="Georgia, serif" font-size="12" fill="#111">E-ink frame</text>
-  <text x="568" y="192" text-anchor="middle" font-family="Georgia, serif" font-size="10" fill="#555">Spectra 6 13.3"</text>
-  <rect x="642" y="100" width="96" height="70" rx="8" fill="#fff" stroke="#1a1a1a" stroke-width="2"/>
-  <text x="690" y="128" text-anchor="middle" font-family="Georgia, serif" font-size="12" fill="#111">Kitchen</text>
-  <text x="690" y="146" text-anchor="middle" font-family="Georgia, serif" font-size="11" fill="#555">wall</text>
-  <line x1="104" y1="135" x2="123" y2="135" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
-  <line x1="228" y1="135" x2="247" y2="135" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
-  <line x1="370" y1="135" x2="389" y2="135" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
-  <line x1="494" y1="120" x2="513" y2="85" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
-  <line x1="568" y1="100" x2="568" y2="145" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
-  <line x1="618" y1="180" x2="637" y2="145" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
-  <text x="380" y="260" text-anchor="middle" font-family="Georgia, serif" font-size="12" fill="#666">You tell Grok Bot → collectors (cal/mail/chat/weather) → HTML → PNG → Hokku → frame</text>
-  <text x="380" y="280" text-anchor="middle" font-family="Georgia, serif" font-size="11" fill="#888">You approve Wi‑Fi, logins, purchases · bot verifies convert + show_next</text>
+  <g fill="none" stroke="#3d4a3a" stroke-width="2" marker-end="url(#arrow)">
+    <path d="M226 151 H268"/>
+    <path d="M490 151 H520 V81 H548"/>
+    <path d="M520 151 V227 H548"/>
+  </g>
+  <g stroke="#b7ad9b" stroke-width="1.5">
+    <rect x="16" y="39" width="210" height="224" rx="8" fill="#fffdf8"/>
+    <rect x="270" y="79" width="220" height="144" rx="8" fill="#efe9de" stroke="#3d4a3a"/>
+    <rect x="550" y="35" width="194" height="92" rx="8" fill="#fffdf8"/>
+    <rect x="550" y="181" width="194" height="92" rx="8" fill="#fffdf8"/>
+  </g>
+  <g fill="#1a1a1a" font-family="Georgia, serif" text-anchor="middle">
+    <text x="121" y="76" font-size="21" font-weight="700">Selected sources</text>
+    <line x1="38" y1="91" x2="204" y2="91" stroke="#d9d0c0"/>
+    <text x="121" y="122" font-size="19">Family calendar</text>
+    <text x="121" y="158" font-size="19">Email</text>
+    <text x="121" y="194" font-size="19">Family messages</text>
+    <text x="121" y="230" font-size="19">Weather</text>
+    <text x="380" y="123" font-size="27" font-weight="700">Your Mac</text>
+    <text x="380" y="162" font-size="21">prepares your</text>
+    <text x="380" y="192" font-size="21">newspaper</text>
+    <text x="647" y="75" font-size="23" font-weight="700">PNG preview</text>
+    <text x="647" y="104" font-size="17" fill="#5a554c">View on the Mac</text>
+    <text x="647" y="221" font-size="23" font-weight="700">E-ink frame</text>
+    <text x="647" y="250" font-size="17" fill="#5a554c">Optional wall display</text>
+    <text x="380" y="306" font-size="18" fill="#5a554c">A fresh edition on the schedule you choose.</text>
+  </g>
 </svg>
