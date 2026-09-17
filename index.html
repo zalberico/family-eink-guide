@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Family Daily — Kitchen E-ink Board Guide</title>
+  <meta name="description" content="A friendly tutorial for building a newspaper-style family kitchen e-ink board with Hokku / Huessen Spectra 6 and Google Calendar." />
+  <link rel="stylesheet" href="assets/site.css" />
+</head>
+<body>
+  <header class="masthead">
+    <p class="eyebrow">Kitchen wall · Newspaper pattern · DIY</p>
+    <h1>The Family Daily</h1>
+    <p class="deck">A practical guide to building a newspaper-style kitchen e-ink board with a Hokku / Huessen 13.3″ Spectra&nbsp;6 frame, a small always-on server, and Google Calendar.</p>
+    <div class="meta-bar">
+      <span>For a friend setting this up at home</span>
+      <span>Public tutorial · fictional samples only</span>
+      <span>Hardware ~$200–280</span>
+    </div>
+  </header>
+  <nav class="toc" aria-label="Table of contents">
+    <h2>On this page</h2>
+    <ol>
+      <li><a href="#what">What you’ll build</a></li>
+      <li><a href="#parts">Parts &amp; cost</a></li>
+      <li><a href="#architecture">Architecture</a></li>
+      <li><a href="#steps">Step-by-step</a></li>
+      <li><a href="#sample">Sample day</a></li>
+      <li><a href="#troubleshoot">Troubleshooting</a></li>
+      <li><a href="#links">Links</a></li>
+    </ol>
+  </nav>
+  <main id="guide"><p class="loading" style="text-align:center;color:#5a554c">Loading the guide…</p></main>
+  <footer class="footer">
+    <p>The Family Daily · public tutorial · sample content is fictional</p>
+    <p><a href="https://github.com/zalberico/family-eink-guide">Source on GitHub</a></p>
+  </footer>
+  <script>
+    Promise.all([
+      fetch("assets/guide-a.html").then(function(r){ return r.text(); }),
+      fetch("assets/guide-b.html").then(function(r){ return r.text(); })
+    ]).then(function(parts){
+      document.getElementById("guide").innerHTML = parts[0] + parts[1];
+    }).catch(function(){
+      document.getElementById("guide").innerHTML = "<p>Could not load guide sections. Open the files under <code>assets/</code> in the <a href=\"https://github.com/zalberico/family-eink-guide\">GitHub repo</a>.</p>";
+    });
+  </script>
+  <noscript>
+    <main style="max-width:42rem;margin:2rem auto;padding:0 1.25rem">
+      <p>This page needs JavaScript to assemble the guide. You can also read <a href="assets/guide-a.html">part A</a> and <a href="assets/guide-b.html">part B</a> directly.</p>
+    </main>
+  </noscript>
+</body>
+</html>

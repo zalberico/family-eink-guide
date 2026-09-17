@@ -1,0 +1,119 @@
+<h3>5. Google Calendar collector (required path for this tutorial)</h3>
+      <p>Use Google Calendar as the source of truth for “Coming up.” Do <strong>not</strong> scrape a logged-in browser as the primary method. Prefer one of these:</p>
+      <p><strong>Option A — Google Calendar API (recommended for multi-calendar households)</strong></p>
+      <ol>
+        <li>Create a dedicated shared <em>family</em> calendar in Google Calendar (not your personal work calendar).</li>
+        <li>In Google Cloud Console, create a project, enable the Calendar API, and create credentials (OAuth for a user script, or a service account if you prefer and understand sharing).</li>
+        <li>Store client secrets / tokens in a local file outside git (for example <code>~/.config/family-daily/google-credentials.json</code>). Add that path to <code>.gitignore</code>.</li>
+        <li>Your collector script lists events for “today + a few days” and emits structured JSON for the HTML template.</li>
+      </ol>
+<pre><code># Pseudocode — you write the real script
+# 1. Load credentials from a local path (never hard-code)
+# 2. calendar.events().list(calendarId="YOUR_FAMILY_CALENDAR_ID", ...)
+# 3. Write /tmp/family-daily-events.json for the template</code></pre>
+      <p><strong>Option B — Secret iCal / .ics feed URL</strong></p>
+      <ol>
+        <li>In Google Calendar settings for the shared family calendar, copy the private iCal address if you use that feature.</li>
+        <li>Store the full URL in a local env file, e.g. <code>FAMILY_ICAL_URL=...</code>—not in the repo.</li>
+        <li>Collector does a simple HTTPS GET and parses VEVENT entries.</li>
+      </ol>
+<pre><code># Local env file (do not commit)
+# FAMILY_ICAL_URL=https://calendar.google.com/calendar/ical/EXAMPLE/private-PLACEHOLDER/basic.ics
+
+curl -fsSL "$FAMILY_ICAL_URL" -o /tmp/family.ics
+# parse with icalendar / a small Python script → JSON for the paper</code></pre>
+      <div class="callout privacy">
+        <strong>Never publish the iCal URL</strong>
+        Treat it like a password. Rotate it if it ever leaks. This guide only shows placeholder URLs.
+      </div>
+
+      <h3>6. Publish + wake schedule</h3>
+      <p>Editions usually map to morning / afternoon / evening, with an optional hourly “live wire” if you add chat later. Configure the server so the <em>frame wakes after</em> each edition publishes. Conceptually:</p>
+<pre><code># Config idea (exact key names: check your hokku-server version)
+"refresh_image_at_time": ["0815", "1530", "1945"]</code></pre>
+      <p>Order of operations: generate → publish → verify landing → <em>then</em> the wake times fire. If you wake before the PNG is ready, the frame may show yesterday’s paper.</p>
+      <p>Schedule your publish script with cron or launchd a few minutes before each wake, for example:</p>
+<pre><code># crontab sketch (host-local)
+10 8 * * *  /Users/YOU/bin/publish-family-daily morning
+25 15 * * * /Users/YOU/bin/publish-family-daily afternoon
+40 19 * * * /Users/YOU/bin/publish-family-daily evening</code></pre>
+
+      <h3>7. Editorial rules (kitchen audience)</h3>
+      <ul>
+        <li><strong>Audience:</strong> people glancing while making coffee—not ops dashboards.</li>
+        <li><strong>No secrets on the wall:</strong> no passwords, pay, brokerage, account numbers.</li>
+        <li><strong>Changes:</strong> useful deltas only. Skip “nothing changed” filler.</li>
+        <li><strong>No ops jargon</strong> on the paper (“pipeline green” belongs in logs, not breakfast).</li>
+        <li><strong>Coming up:</strong> calendar-driven.</li>
+        <li><strong>Resolved loops:</strong> let finished items decay in about 1–2 days.</li>
+        <li><strong>Correctness before publish:</strong> if the collector fails, don’t push a half-blank edition—fail loud on the host instead.</li>
+      </ul>
+
+      <h3>8. Verify landing</h3>
+      <p>Before you walk away:</p>
+      <ol>
+        <li>PNG mtime is fresh.</li>
+        <li>Hokku convert / processing status is <code>ok</code>.</li>
+        <li><code>show_next</code> points at the new file.</li>
+        <li>Optional after wake: <code>last_seen</code> updated.</li>
+      </ol>
+<pre><code># Illustrative checks — adapt to your server’s real paths/API
+ls -l "$HOKKU_IMAGES/family-daily.png"
+# confirm convert_status == ok and show_next via UI or API
+# after wake window: confirm last_seen is recent</code></pre>
+    </section>
+
+    <section id="sample">
+      <h2>Sample day</h2>
+      <p>Below is a <strong>fictional</strong> morning edition for “Alex &amp; Sam.” It is not a screenshot of anyone’s real board.</p>
+      <figure class="sample-wrap">
+        <img src="assets/sample-board.svg" width="600" height="800" alt="Fictional Family Daily sample board for Alex and Sam with weather, calendar, and changes" />
+        <figcaption>Fictional sample · Alex &amp; Sam household · for layout reference only</figcaption>
+      </figure>
+      <p><strong>Morning edition ideas:</strong> weather strip, Coming up from the shared calendar, Changes (soccer moved, package expected), a short Live Wire of household notes. Afternoon might emphasize school pickup and dinner. Evening might shrink the day plan and highlight tomorrow’s first events.</p>
+      <div class="callout">
+        <strong>Optional extras (not required for MVP)</strong>
+        Chat live-wire, package/mail collectors, and a speaker announce when a new edition lands. Ship calendar + weather + publish first; add the rest when the wall habit sticks.
+      </div>
+    </section>
+
+    <section id="troubleshoot">
+      <h2>Troubleshooting</h2>
+      <table>
+        <thead>
+          <tr><th>Symptom</th><th>Things to try</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Frame never updates</td>
+            <td>Confirm server is up; wake times are after publish; frame and host share a LAN; check <code>last_seen</code> after a wake window.</td>
+          </tr>
+          <tr>
+            <td>Image looks cropped</td>
+            <td>Revisit scale-to-fill without side crop; increase safe margins (~40px); stick to 1200×1600.</td>
+          </tr>
+          <tr>
+            <td>Convert status not ok</td>
+            <td>Hard-fail the publish script; inspect the PNG; re-render; do not pin <code>show_next</code> until status is ok.</td>
+          </tr>
+          <tr>
+            <td>Calendar empty</td>
+            <td>Verify family calendar ID / iCal env var locally; check API quota and token refresh; don’t fall back to browser scraping.</td>
+          </tr>
+          <tr>
+            <td>Wi‑Fi flash failed</td>
+            <td>Re-read upstream flash docs; double-check SSID locally; 2.4 GHz vs 5 GHz quirks are device-specific—follow Hokku’s hardware notes.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="links">
+      <h2>Links</h2>
+      <ul>
+        <li><a href="https://github.com/defl/hokku_epaper">Hokku e-paper firmware &amp; server</a> (releases, install, hardware)</li>
+        <li><a href="https://developers.google.com/calendar">Google Calendar API docs</a></li>
+        <li><a href="https://github.com/zalberico/family-eink-guide">This guide’s repository</a></li>
+      </ul>
+      <p>If something in your house needs a one-off integration that would expose private URLs or names, keep that script private. This public guide is meant to teach the pattern—not to mirror anyone’s real kitchen.</p>
+    </section>

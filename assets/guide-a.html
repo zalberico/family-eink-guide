@@ -1,0 +1,98 @@
+
+    <section id="what">
+      <h2>What you’ll build</h2>
+      <p>Imagine a quiet newspaper on the kitchen wall: today’s weather, what’s coming up, and only the changes that matter. No glowing tablet. No password prompts. Just a portrait e-ink panel that wakes a few times a day, pulls a fresh PNG from a home server, and goes back to sleep.</p>
+      <p>This guide teaches the <em>pattern</em> behind one real setup. Names, appointments, and network details below are placeholders (Alex &amp; Sam, <code>YOUR_WIFI</code>, <code>192.0.2.x</code>). Fill in your own secrets on your machine—never commit them to git or paste them into a public gist.</p>
+      <div class="callout privacy">
+        <strong>Privacy first</strong>
+        Keep passwords, brokerage, pay, and caregiver details off the wall. The board is for a kitchen audience. Sample content in this guide is fictional on purpose.
+      </div>
+    </section>
+
+    <section id="parts">
+      <h2>Parts &amp; cost</h2>
+      <table>
+        <thead>
+          <tr><th>Piece</th><th>Notes</th><th>Rough cost</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Hokku / Huessen 13.3″ Spectra&nbsp;6</td>
+            <td>ESP32-S3 e-ink frame. Same family of hardware; sold under both names. Open-source firmware + server.</td>
+            <td>~$200–280</td>
+          </tr>
+          <tr>
+            <td>Always-on host</td>
+            <td>Mac mini, Linux box, or similar. Runs <code>hokku-server</code> and your publish scripts.</td>
+            <td>Whatever you already have</td>
+          </tr>
+          <tr>
+            <td>Wi‑Fi on the same LAN</td>
+            <td>Frame talks to your server. Use your own SSID/password when flashing—never publish them.</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>Google Calendar</td>
+            <td>Dedicated shared family calendar + API credentials or a private calendar .ics URL you keep local.</td>
+            <td>Free</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>Start with the public hardware and install docs: <a href="https://github.com/defl/hokku_epaper">github.com/defl/hokku_epaper</a>. Read the releases page, install docs, and hardware guide there—this tutorial does not paste flash secrets.</p>
+    </section>
+
+    <section id="architecture">
+      <h2>Architecture</h2>
+      <p>Think of it as a tiny newsroom:</p>
+      <ol>
+        <li><strong>Collectors</strong> pull calendar, weather, and (optionally) chat / package mail.</li>
+        <li><strong>HTML newspaper</strong> lays out a portrait “edition.”</li>
+        <li><strong>Headless Chrome</strong> renders that HTML to a <strong>1200×1600</strong> PNG (safe margins ~40px; scale to fill without cropping the sides).</li>
+        <li><strong>Publish script</strong> copies the PNG into the Hokku images folder, pins <code>show_next</code>, and refuses to call it done unless convert status is ok.</li>
+        <li><strong>hokku-server</strong> serves the image; the frame wakes after editions publish (config like <code>refresh_image_at_time</code>).</li>
+      </ol>
+      <div class="diagram"><img src="assets/architecture.svg" alt="Architecture: collectors to HTML to PNG to hokku-server to e-ink frame to kitchen wall" style="width:100%;height:auto;display:block" /></div>
+      <p>On a Mac-style host, runtime data often lives under an application-support style folder for Hokku (images, cache, config). The local UI is typically something like <code>http://localhost:8080/hokku/ui</code>—confirm against the current Hokku docs for your version.</p>
+    </section>
+
+    <section id="steps">
+      <h2>Step-by-step</h2>
+
+      <h3>1. Buy the frame</h3>
+      <p>Get a Hokku or Huessen 13.3″ Spectra&nbsp;6 (ESP32-S3). Check the public repo’s hardware guide so you know which revision you’re holding before you flash.</p>
+
+      <h3>2. Flash Hokku firmware</h3>
+      <p>Follow the official install path in <a href="https://github.com/defl/hokku_epaper">defl/hokku_epaper</a> (releases + install docs). When the flasher asks for Wi‑Fi, enter <em>your</em> network locally. Do not screenshot or commit those values.</p>
+      <div class="callout">
+        <strong>Placeholder habit</strong>
+        In notes and scripts, write <code>YOUR_WIFI_SSID</code> and <code>YOUR_WIFI_PASSWORD</code>. Real values stay on the machine that flashes the board.
+      </div>
+
+      <h3>3. Run hokku-server</h3>
+      <p>Install and run the Python server from the Hokku project. A common pattern on macOS is a micromamba (or conda) env named something like <code>hokku</code>, plus a LaunchAgent (or systemd unit on Linux) so the server survives reboots.</p>
+<pre><code># Example shape only — adjust paths to your machine
+micromamba activate hokku
+# then start hokku-server per upstream docs
+
+# Keepalive idea (macOS LaunchAgent): a plist that relaunches the server
+# Keepalive idea (Linux): systemd user service with Restart=always</code></pre>
+      <p>Open the local UI in a browser on the host (often around port 8080 under a <code>/hokku/ui</code> path). Confirm the frame can see the server on your LAN using documentation-recommended discovery—not by publishing your real LAN IP. In examples, use documentation ranges like <code>192.0.2.10</code>.</p>
+
+      <h3>4. Generate the newspaper PNG</h3>
+      <p>Target size: <strong>1200×1600</strong> portrait PNG. Render HTML with headless Chrome, then scale to fill without cropping the left/right edges. Leave roughly <strong>40px</strong> of safe margin so text doesn’t kiss the bezel.</p>
+<pre><code># Sketch of a render step (paths are yours)
+google-chrome --headless --disable-gpu \
+  --screenshot=/tmp/family-daily.png \
+  --window-size=1200,1600 \
+  "file:///PATH/TO/edition.html"
+
+# Then scale with your preferred tool so content fills height
+# without cropping sides — ImageMagick, Pillow, etc.</code></pre>
+      <p>Your publish script should:</p>
+      <ul>
+        <li>Copy the PNG into the Hokku images directory.</li>
+        <li>Pin / set <code>show_next</code> so the frame knows which file to pull.</li>
+        <li><strong>Hard-fail</strong> if convert status is not <code>ok</code>.</li>
+        <li>Verify “landing”: fresh file mtime, convert ok, and <code>show_next</code> pointing at the new image—before you call the run done.</li>
+        <li>Optional: after a scheduled wake, check <code>last_seen</code> to confirm the frame actually checked in.</li>
+      </ul>
