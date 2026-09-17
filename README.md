@@ -1,19 +1,22 @@
-# The Family Daily — Kitchen E-ink Board Guide
+# The Family Daily
 
-**Live:** [https://zalberico.com/family-eink-guide/](https://zalberico.com/family-eink-guide/)
+A guide for a nontechnical household member to set up a kitchen newspaper with Grok Bot, followed by a technical runbook for the bot doing the work.
 
-Two readers: **you** (short human path) and **Grok Bot** (executable runbook).
+The setup uses an always-on Mac, selected family calendars, email, iMessage, WhatsApp, and weather. The reader chooses which sources to connect, reviews the first edition, and can add an optional Hokku / Huessen EPF1301 frame.
 
-**Always-on Mac required** (Mac Mini preferred, or an old Mac laptop left on). Raspberry Pi / Linux will not work — iMessage and Mac apps are required inputs.
+## Files
 
-You keep the Mac online, install/connect Grok Bot, approve Wi‑Fi / logins / purchases, and point Grok Bot at this guide. Grok Bot builds collectors (calendar, email, iMessage, WhatsApp, weather), newspapers, and optionally drives a Hokku / Huessen 13.3″ Spectra 6 frame.
+- `index.html` contains the complete guide and styles inline. It does not fetch HTML fragments or require JavaScript.
+- `assets/sample-board.svg` is a fictional newspaper example.
+- `assets/architecture.svg` explains the flow from selected information to the Mac and optional frame.
 
-Point Grok Bot at: *Read https://zalberico.com/family-eink-guide/ and set this up for me. Follow the Grok Bot runbook and set this up like The Family Daily.*
+Keep these files together for a local preview. No build step is needed. Older `assets/guide-a.html`, `assets/guide-b.html`, and `assets/site.css` files, if present, are not used by this revision; do not rebuild the page from those older fragments.
 
-## Privacy
+## Publication and scope
 
-Fictional samples (Alex & Sam). Kitchen-safe wall copy only.
+- Published guide: https://zalberico.com/family-eink-guide/
+- Repository: https://github.com/zalberico/family-eink-guide
+- Grok Bot: https://x.ai/bot
+- Frame firmware and server: https://github.com/defl/hokku_epaper
 
-## Upstream
-
-- [defl/hokku_epaper](https://github.com/defl/hokku_epaper)
+Revised September 17, 2026. Product requirements were checked against the official documentation linked in the guide. This editorial revision does not represent an end-to-end hardware installation test. The runbook requires the implementing bot to verify actual access, data, scheduling, and frame behavior in the household's environment.
