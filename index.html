@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta http-equiv="Cache-Control" content="no-cache" />
   <title>The Family Daily — Kitchen E-ink with Grok Bot</title>
-  <meta name="description" content="Short human path + Grok Bot runbook: always-on Mac Mini (required for iMessage), point Grok Bot at this guide, first-class calendar/mail/iMessage/WhatsApp, optional Hokku frame." />
-  <link rel="stylesheet" href="assets/site.css?v=20260917mac2" />
+  <meta name="description" content="Mac-only kitchen newspaper with Grok Bot (xAI): always-on Mac Mini for iMessage, first-class calendar/mail/chat, optional Hokku frame." />
+  <link rel="stylesheet" href="assets/site.css?v=20260917mac3" />
 </head>
 <body>
   <header class="masthead">
@@ -40,10 +40,10 @@
     <p><a href="https://github.com/zalberico/family-eink-guide">Source on GitHub</a></p>
   </footer>
   <script>
-    var v = "20260917mac2";
+    var v = "20260917mac3";
     Promise.all([
-      fetch("assets/guide-a.html?v=" + v).then(function(r){ return r.text(); }),
-      fetch("assets/guide-b.html?v=" + v).then(function(r){ return r.text(); })
+      fetch("assets/guide-human.html?v=" + v).then(function(r){ return r.text(); }),
+      fetch("assets/guide-bot.html?v=" + v).then(function(r){ return r.text(); })
     ]).then(function(parts){
       document.getElementById("guide").innerHTML = parts[0] + parts[1];
     }).catch(function(){
